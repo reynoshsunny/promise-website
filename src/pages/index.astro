@@ -1,0 +1,407 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, services, values } from '../config.js';
+
+
+
+const icons = {
+  chain: '<circle cx="20" cy="32" r="9"/><circle cx="44" cy="32" r="9"/><path d="M26 32h12"/>',
+  gem: '<path d="M12 26 22 14h20l10 12-20 26z"/><path d="M12 26h40M26 14l6 12 6-12M32 52 26 26M32 52l6-26"/>',
+  heart: '<path d="M32 52S10 38 10 24a11 11 0 0 1 22-3 11 11 0 0 1 22 3c0 14-22 28-22 28z"/>',
+  pen: '<path d="M12 52l4-12L42 14l8 8-26 26z"/><path d="M36 20l8 8M12 52l10-3"/>',
+  laser: '<path d="M32 8v28"/><circle cx="32" cy="40" r="4"/><path d="M14 52h36M20 46l-6 6M44 46l6 6M24 40l-8 2M40 40l8 2"/>',
+  ring: '<circle cx="32" cy="38" r="16"/><path d="M26 18l6-8 6 8-6 6z"/>',
+  rework: '<path d="M44 12a10 10 0 0 0-12 12L12 44l8 8 20-20A10 10 0 0 0 52 20l-7 7-6-2-2-6z"/>',
+  lotus: '<path d="M32 50C20 44 14 34 18 22c6 2 11 8 14 14 3-6 8-12 14-14 4 12-2 22-14 28z"/><path d="M32 36V14M32 50c-14-2-22-8-24-16M32 50c14-2 22-8 24-16"/>',
+};
+const tel = 'tel:' + site.phoneRaw;
+const wa = 'https://wa.me/' + site.whatsapp;
+const mapSrc = 'https://www.google.com/maps?q=' + encodeURIComponent(site.mapQuery) + '&output=embed';
+const mapLink = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(site.mapQuery);
+---
+
+<Base
+  title="Promise Gold & Diamonds | 24K & 22K Gold Jewellery, Karama Dubai"
+  description="Buy or sell 24K & 22K gold at Promise Gold & Diamonds, Karama Center, Dubai. Diamond jewellery, bridal sets, custom designs and precision laser engraving."
+>
+  <!-- Preloader -->
+  <div class="preloader" aria-hidden="true">
+    <div class="pre-logo"><img src="/img/logo-sm.webp" alt="" width="340" height="137" fetchpriority="high" /></div>
+    <i class="pre-bar"></i>
+  </div>
+
+  <div class="progress"><i></i></div>
+  <div class="cursor" aria-hidden="true"></div>
+
+  <!-- Nav -->
+  <header class="nav">
+    <a class="brand" href="#top" aria-label="Promise Gold & Diamonds"><img src="/img/logo-sm.webp" alt="Promise Gold & Diamonds" width="340" height="137" fetchpriority="high" /></a>
+    <nav class="links" aria-label="Primary">
+      <a href="#craft">Craftsmanship</a>
+      <a href="#engrave">Engraving</a>
+      <a href="#gold">24K &amp; 22K</a>
+      <a href="#trade">Sell / Buy</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn-gold btn-sm magnetic nav-cta" href={tel}>Call Us</a>
+    <button class="burger" aria-label="Menu" aria-expanded="false"><i></i><i></i></button>
+  </header>
+  <div class="menu" inert>
+    <a href="#craft">Craftsmanship</a>
+    <a href="#engrave">Laser Engraving</a>
+    <a href="#gold">24K &amp; 22K Gold</a>
+    <a href="#trade">Sell or Buy Gold</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+    <a class="menu-tel gold-text" href={tel}>{site.phone}</a>
+  </div>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <canvas id="dust"></canvas>
+      <div class="hero-glow"></div>
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow" data-hero style="--d:.95s">Karama Center · Dubai</p>
+          <h1 class="display">
+            <span class="line"><span class="line-in" style="--i:0">Crafting Timeless</span></span>
+            <span class="line"><span class="line-in" style="--i:1">Elegance in <em class="gold-text">Gold</em></span></span>
+            <span class="line"><span class="line-in" style="--i:2">&amp; <em class="gold-text">Diamonds.</em></span></span>
+          </h1>
+          <p class="lead" data-hero style="--d:1.45s">
+            Tradition meets modern luxury — certified 24K and 22K gold, hand-finished diamond jewellery,
+            precision laser engraving, and honest gold buying &amp; selling.
+          </p>
+          <div class="cta-row" data-hero style="--d:1.6s">
+            <a class="btn btn-gold magnetic" href="#trade">Sell or Buy Gold</a>
+            <a class="btn btn-ghost magnetic" href="#craft">Our Craftsmanship</a>
+          </div>
+          <ul class="chips" data-hero style="--d:1.75s">
+            <li>24K Gold</li><li>22K Gold</li><li>Laser Engraving</li><li>Sell · Buy</li>
+          </ul>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <div class="orbit o1" data-depth="10"></div>
+          <div class="orbit o2" data-depth="18"></div>
+          <div class="orbit o3" data-depth="28"></div>
+          <svg class="gem" data-depth="40" viewBox="0 0 400 360">
+            <defs>
+              <linearGradient id="gl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff1b8"/><stop offset=".5" stop-color="#e6b958"/><stop offset="1" stop-color="#8a5a16"/></linearGradient>
+              <linearGradient id="f1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#b9e6ff"/></linearGradient>
+              <linearGradient id="f2" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#d8f1ff"/><stop offset="1" stop-color="#7cc4f0"/></linearGradient>
+              <linearGradient id="f3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eaf8ff"/><stop offset="1" stop-color="#5aa9dd"/></linearGradient>
+              <clipPath id="gemclip"><path d="M20 130 120 40h160l100 90-180 210z"/></clipPath>
+              
+            </defs>
+            <g>
+              <g class="facets" stroke="url(#gl)" stroke-width="2" stroke-linejoin="round">
+                <polygon class="facet" fill="url(#f2)" points="20,130 120,40 110,130" />
+                <polygon class="facet" fill="url(#f1)" points="120,40 110,130 200,130" />
+                <polygon class="facet" fill="url(#f3)" points="120,40 200,130 280,40" />
+                <polygon class="facet" fill="url(#f1)" points="280,40 200,130 290,130" />
+                <polygon class="facet" fill="url(#f2)" points="280,40 290,130 380,130" />
+                <polygon class="facet" fill="url(#f3)" points="20,130 110,130 200,340" />
+                <polygon class="facet" fill="url(#f2)" points="110,130 200,130 200,340" />
+                <polygon class="facet" fill="url(#f1)" points="200,130 290,130 200,340" />
+                <polygon class="facet" fill="url(#f3)" points="290,130 380,130 200,340" />
+              </g>
+            </g>
+            <g clip-path="url(#gemclip)"><rect class="sweep" x="-120" y="0" width="70" height="380" fill="#fff" opacity=".0" transform="skewX(-20)"/></g>
+          </svg>
+          <svg class="spark s1" data-depth="55" viewBox="0 0 24 24"><path d="M12 0c1 8 4 11 12 12-8 1-11 4-12 12-1-8-4-11-12-12 8-1 11-4 12-12z"/></svg>
+          <svg class="spark s2" data-depth="65" viewBox="0 0 24 24"><path d="M12 0c1 8 4 11 12 12-8 1-11 4-12 12-1-8-4-11-12-12 8-1 11-4 12-12z"/></svg>
+          <svg class="spark s3" data-depth="48" viewBox="0 0 24 24"><path d="M12 0c1 8 4 11 12 12-8 1-11 4-12 12-1-8-4-11-12-12 8-1 11-4 12-12z"/></svg>
+        </div>
+      </div>
+      <div class="scroll-cue" data-hero style="--d:2s"><span>Scroll</span><i></i></div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="track">
+        {Array.from({ length: 2 }).map(() => (
+          <div class="group">
+            <span>24K Pure Gold</span><b>◆</b><span>22K Jewellery</span><b>◆</b><span>Laser Engraving</span><b>◆</b>
+            <span>Sell Your Gold</span><b>◆</b><span>Buy Gold</span><b>◆</b><span>Diamond Jewellery</span><b>◆</b>
+            <span>Custom Designs</span><b>◆</b><span>Bridal Collections</span><b>◆</b>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- CRAFTSMANSHIP -->
+    <section class="craft" id="craft">
+      <div class="wrap craft-grid">
+        <div class="craft-intro">
+          <p class="eyebrow" data-reveal>Jewellery Craftsmanship</p>
+          <h2 class="h2" data-reveal>Every piece begins as a <em class="gold-text">promise.</em></h2>
+          <p class="muted" data-reveal>
+            A legacy of trust and craftsmanship. From the first sketch to the final polish, each ornament is made
+            with precision — certified, high quality, and finished by hand.
+          </p>
+          <div class="badge" data-reveal><b>22K</b><span>·</span><b>24K</b><small>certified purity</small></div>
+        </div>
+        <div class="craft-steps">
+          <div class="spine"><i></i></div>
+          <ol class="steps">
+            <li class="step">
+              <span class="num">01</span>
+              <div><h3>Design</h3><p>An idea, a sketch or a family heirloom becomes a detailed design — traditional or modern, bridal or everyday.</p></div>
+            </li>
+            <li class="step">
+              <span class="num">02</span>
+              <div><h3>Forge &amp; Form</h3><p>Pure 24K and durable 22K gold is shaped with care, keeping every line clean and every curve balanced.</p></div>
+            </li>
+            <li class="step">
+              <span class="num">03</span>
+              <div><h3>Set &amp; Engrave</h3><p>Diamonds are secured by hand, and precision laser engraving adds names, dates and messages that last.</p></div>
+            </li>
+            <li class="step">
+              <span class="num">04</span>
+              <div><h3>Polish &amp; Promise</h3><p>A final inspection and mirror finish — delivered with full transparency about purity and price.</p></div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATEMENT -->
+    <section class="statement">
+      <div class="wrap">
+        <p class="eyebrow center">Our Promise</p>
+        <p class="big" id="statement">
+          We deliver <em class="gold-text">purity</em>, <em class="gold-text">transparency</em>, and unmatched design —
+          jewellery as a symbol of love, commitment and celebration, made to last a lifetime.
+        </p>
+      </div>
+    </section>
+
+    <!-- LASER ENGRAVING -->
+    <section class="engrave" id="engrave">
+      <div class="wrap">
+        <header class="sec-head">
+          <p class="eyebrow" data-reveal>Laser Engraving</p>
+          <h2 class="h2" data-reveal>Your words, <em class="gold-text">etched in gold.</em></h2>
+          <p class="muted" data-reveal>
+            Names, initials, dates, blessings — engraved with a precision laser in English or Arabic. Type below and
+            watch the beam write.
+          </p>
+        </header>
+        <div class="engrave-grid">
+          <div class="plate-stage" data-shape="bar">
+            <div class="laser-head"><span></span></div>
+            <div class="beam"></div>
+            <div class="hit"></div>
+            <canvas class="sparks"></canvas>
+            <div class="plate" data-style="script">
+              <div class="plate-text" dir="auto">Promise</div>
+            </div>
+            <p class="stage-note">Live preview · final depth, size and placement confirmed in store.</p>
+          </div>
+          <form class="engrave-ui" onsubmit="return false">
+            <label for="engrave-text">Your engraving</label>
+            <div class="field">
+              <input id="engrave-text" type="text" maxlength="18" value="Promise" autocomplete="off" spellcheck="false" />
+              <span class="count"><b id="ecount">7</b>/18</span>
+            </div>
+            <p class="label">Lettering</p>
+            <div class="seg" role="group" aria-label="Lettering style">
+              <button type="button" class="on" data-style="script">Script</button>
+              <button type="button" data-style="classic">Classic</button>
+              <button type="button" data-style="block">Modern</button>
+              <button type="button" data-style="arabic" lang="ar">عربي</button>
+            </div>
+            <p class="label">Piece</p>
+            <div class="seg" role="group" aria-label="Piece shape">
+              <button type="button" class="on" data-shape="bar">Bar</button>
+              <button type="button" data-shape="round">Round pendant</button>
+            </div>
+            <button type="button" class="btn btn-gold magnetic go" id="engrave-go">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v10"/><circle cx="12" cy="16" r="3"/><path d="M4 22h16"/></svg>
+              Engrave it
+            </button>
+            <a class="link-arrow" href={wa + '?text=' + encodeURIComponent('Hello Promise Gold & Diamonds, I would like to get a piece engraved.')} target="_blank" rel="noopener">Book an engraving on WhatsApp →</a>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- 24K vs 22K -->
+    <section class="purity" id="gold">
+      <div class="wrap">
+        <header class="sec-head center">
+          <p class="eyebrow" data-reveal>24 Carat &amp; 22 Carat</p>
+          <h2 class="h2" data-reveal>Two golds. <em class="gold-text">One standard of trust.</em></h2>
+          <p class="muted" data-reveal>Know exactly what you are buying and selling — purity matters, and we show it plainly.</p>
+        </header>
+        <div class="purity-grid">
+          <article class="pcard tilt" data-reveal>
+            <div class="ring" data-p="99.9">
+              <svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="54"/><circle class="fg" cx="60" cy="60" r="54"/></svg>
+              <div class="ring-n"><b data-count="99.9" data-dec="1">0</b><small>%</small></div>
+            </div>
+            <h3>24K <span>· 999 fine gold</span></h3>
+            <p>The purest gold there is — rich, deep yellow and prized as an investment. Soft by nature, so best for bars, coins and special ornaments.</p>
+            <ul><li>Highest purity</li><li>Ideal to hold &amp; invest</li><li>Gold bars &amp; coins</li></ul>
+          </article>
+          <article class="pcard tilt" data-reveal>
+            <div class="ring" data-p="91.6">
+              <svg viewBox="0 0 120 120"><circle class="bg" cx="60" cy="60" r="54"/><circle class="fg" cx="60" cy="60" r="54"/></svg>
+              <div class="ring-n"><b data-count="91.6" data-dec="1">0</b><small>%</small></div>
+            </div>
+            <h3>22K <span>· 916 gold</span></h3>
+            <p>Gold blended with a little strength — the classic choice for jewellery. Warm colour, durable enough to wear every day and to carry fine detail.</p>
+            <ul><li>Everyday durability</li><li>Traditional &amp; bridal sets</li><li>Chains, bangles, rings</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SELL / BUY -->
+    <section class="trade" id="trade">
+      <div class="wrap trade-grid">
+        <div class="trade-copy">
+          <p class="eyebrow" data-reveal>Sell or Buy Gold</p>
+          <h2 class="h2" data-reveal>Fair. Clear. <em class="gold-text">In front of you.</em></h2>
+          <div class="tabs" role="tablist" data-reveal>
+            <button role="tab" class="on" data-mode="sell">Sell Gold</button>
+            <button role="tab" data-mode="buy">Buy Gold</button>
+            <i class="tab-ink"></i>
+          </div>
+          <div class="panes">
+            <ol class="pane on" data-pane="sell">
+              <li><b>Bring your gold</b><span>Jewellery, chains, old pieces — any carat.</span></li>
+              <li><b>Purity &amp; weight, shown openly</b><span>Tested and weighed with you watching.</span></li>
+              <li><b>A clear valuation</b><span>Honest rate, explained line by line.</span></li>
+              <li><b>Your decision</b><span>No pressure — sell, rework, or keep.</span></li>
+            </ol>
+            <ol class="pane" data-pane="buy">
+              <li><b>Choose your gold</b><span>24K for value, 22K for jewellery.</span></li>
+              <li><b>Certified purity</b><span>Know exactly what you are holding.</span></li>
+              <li><b>Transparent pricing</b><span>Gold value and making charges, itemised.</span></li>
+              <li><b>Make it yours</b><span>Add laser engraving or a custom design.</span></li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="calc tilt" data-reveal data-rate={site.goldRate24K}>
+          <h3 class="calc-title">Quick gold value estimate</h3>
+          <div class="calc-row">
+            <label>Weight <small>grams</small><input id="c-weight" type="number" inputmode="decimal" min="0" step="0.01" placeholder="e.g. 10" /></label>
+            <label>Purity <small>carat</small>
+              <select id="c-karat">
+                <option value="0.999">24K · 999</option>
+                <option value="0.916" selected>22K · 916</option>
+                <option value="0.875">21K · 875</option>
+                <option value="0.750">18K · 750</option>
+              </select>
+            </label>
+          </div>
+          <label class="full">Today's 24K rate <small>AED per gram</small>
+            <input id="c-rate" type="number" inputmode="decimal" min="0" step="0.01" placeholder="Enter today's 24K rate" />
+          </label>
+          <div class="result">
+            <span id="c-label">Estimated sell value</span>
+            <strong class="gold-text"><small>AED</small> <b id="c-out">—</b></strong>
+          </div>
+          <p class="fine" id="c-note">Indicative only. Final value depends on testing, weight and the live rate in store.</p>
+          <a class="btn btn-gold magnetic block" id="c-cta" href={wa} target="_blank" rel="noopener">Get today's rate on WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services" id="services">
+      <div class="wrap">
+        <header class="sec-head center">
+          <p class="eyebrow" data-reveal>What we do</p>
+          <h2 class="h2" data-reveal>From everyday gold to <em class="gold-text">once-in-a-lifetime.</em></h2>
+        </header>
+        <div class="svc-grid">
+          {services.map((s, i) => (
+            <article class="svc spot" data-reveal>
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" set:html={icons[s.i]} />
+              <span class="idx">{String(i + 1).padStart(2, '0')}</span>
+              <h3>{s.t}</h3>
+              <p>{s.d}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- VALUES -->
+    <section class="values">
+      <div class="wrap values-grid">
+        <div class="values-head">
+          <p class="eyebrow" data-reveal>A Legacy of Trust &amp; Craftsmanship</p>
+          <h2 class="h2" data-reveal>Six values we <em class="gold-text">never</em> compromise.</h2>
+          <blockquote class="pull" data-reveal>“Deliver purity, transparency, and unmatched design.”<cite>Our mission</cite></blockquote>
+        </div>
+        <ul class="vlist">
+          {values.map(([t, d], i) => (
+            <li class="vrow" data-reveal>
+              <span class="vnum">{String(i + 1).padStart(2, '0')}</span>
+              <h3>{t}</h3>
+              <p>{d}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+      <div class="wrap contact-grid">
+        <div class="contact-copy">
+          <p class="eyebrow" data-reveal>Visit · Call · Message</p>
+          <h2 class="h2" data-reveal>Let's make something <em class="gold-text">timeless.</em></h2>
+          <ul class="info" data-reveal>
+            <li><span>Showroom</span><a href={mapLink} target="_blank" rel="noopener">{site.address}</a></li>
+            <li><span>Call</span><a href={tel}>{site.phone}</a></li>
+            <li><span>Follow</span>
+              <div class="soc">
+                <a href={site.instagram} target="_blank" rel="noopener">Instagram</a>
+                <a href={site.facebook} target="_blank" rel="noopener">Facebook</a>
+              </div>
+            </li>
+          </ul>
+          <form class="msg" id="msg" data-reveal data-wa={site.whatsapp}>
+            <div class="msg-row">
+              <input name="name" placeholder="Your name" aria-label="Your name" autocomplete="name" required />
+              <select name="topic" aria-label="What are you interested in?">
+                <option>Sell gold</option><option>Buy gold</option><option>Laser engraving</option>
+                <option>Custom design</option><option>Bridal collection</option><option>Gold rework</option>
+              </select>
+            </div>
+            <textarea name="note" rows="3" placeholder="Tell us what you have in mind…" aria-label="Your message"></textarea>
+            <button class="btn btn-gold magnetic" type="submit">Send on WhatsApp</button>
+          </form>
+        </div>
+        <div class="map" data-reveal>
+          <iframe title="Promise Gold & Diamonds location" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src={mapSrc}></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot-in">
+      <a class="brand" href="#top" aria-label="Promise Gold & Diamonds"><img src="/img/logo-sm.webp" alt="Promise Gold & Diamonds" width="340" height="137" fetchpriority="high" /></a>
+      <p>© 2026 Promise Gold &amp; Diamonds · {site.address}</p>
+      <div class="soc">
+        <a href={site.instagram} target="_blank" rel="noopener">Instagram</a>
+        <a href={site.facebook} target="_blank" rel="noopener">Facebook</a>
+        <a href={tel}>{site.phone}</a>
+      </div>
+    </div>
+    <p class="credit wrap">Developed with <span class="heart" aria-label="love">♥</span> by <a href="tel:+971543218927" aria-label="Call Reynosh on +971 54 321 8927">Reynosh</a></p>
+  </footer>
+
+  <a class="wa-float magnetic" href={wa} target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.2-.7-2.7-1.1-4.4-3.8-4.6-4-.1-.2-1.1-1.4-1.1-2.7s.7-1.9.9-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.6c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.300 2.400 1.500.3.1.5.1.7-.1l.9-1.100c.2-.3.4-.2.6-.1l1.900.9c.3.1.5.2.5.3.1.2.1.8-.1 1.400z"/></svg>
+  </a>
+</Base>

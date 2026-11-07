@@ -1,0 +1,120 @@
+---
+import '../styles/global.css';
+import { site, services } from '../config.js';
+import cormorant600 from '@fontsource/cormorant-garamond/files/cormorant-garamond-latin-600-normal.woff2?url';
+import cormorant600i from '@fontsource/cormorant-garamond/files/cormorant-garamond-latin-600-italic.woff2?url';
+import amiriFont from '@fontsource/amiri/files/amiri-arabic-400-normal.woff2?url';
+import manropeFont from '@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url';
+import cormorantFont from '@fontsource/cormorant-garamond/files/cormorant-garamond-latin-500-normal.woff2?url';
+import cormorantItalicFont from '@fontsource/cormorant-garamond/files/cormorant-garamond-latin-500-italic.woff2?url';
+
+const { title, description } = Astro.props;
+// Latin-only @font-face (self-hosted, no Google Fonts, no unused subsets)
+const LAT = 'U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212,U+FEFF,U+FFFD';
+const face = (fam, url, w, style, range) =>
+  `@font-face{font-family:'${fam}';font-style:${style};font-display:swap;font-weight:${w};src:url(${url}) format('woff2');unicode-range:${range}}`;
+const fontCss = [
+  face('Manrope Variable', manropeFont, '200 800', 'normal', LAT),
+  face('Cormorant Garamond', cormorantFont, 500, 'normal', LAT),
+  face('Cormorant Garamond', cormorant600, 600, 'normal', LAT),
+  face('Cormorant Garamond', cormorantItalicFont, 500, 'italic', LAT),
+  face('Cormorant Garamond', cormorant600i, 600, 'italic', LAT),
+  face('Amiri', amiriFont, 400, 'normal', 'U+0600-06FF,U+200C-200E,U+2010-2011,U+FB50-FDFF,U+FE70-FEFC'),
+].join('');
+const canonical = site.url + '/';
+const ogImage = site.url + '/og-image.jpg';
+const ogAlt = 'Promise Gold & Diamonds – 24K & 22K gold, diamonds and laser engraving in Karama, Dubai';
+const ld = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': site.url + '/#website',
+      url: canonical,
+      name: site.name,
+      inLanguage: 'en',
+      publisher: { '@id': site.url + '/#business' },
+    },
+    {
+      '@type': 'JewelryStore',
+      '@id': site.url + '/#business',
+      name: site.name,
+      url: canonical,
+      image: ogImage,
+      logo: site.url + '/img/logo.png',
+      telephone: site.phoneRaw,
+      description,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Shop No. 39, Karama Center',
+        addressLocality: 'Dubai',
+        addressCountry: 'AE',
+      },
+      areaServed: 'Dubai, United Arab Emirates',
+      sameAs: [site.facebook, site.instagram],
+      knowsAbout: ['24 carat gold', '22 carat gold', 'diamond jewellery', 'laser engraving', 'buying and selling gold'],
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Jewellery services',
+        itemListElement: services.map((x) => ({
+          '@type': 'Offer',
+          itemOffered: { '@type': 'Service', name: x.t, description: x.d },
+        })),
+      },
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="author" content="Promise Gold & Diamonds" />
+    <meta name="theme-color" content="#090704" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="format-detection" content="telephone=yes" />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={canonical} />
+    <link rel="alternate" hreflang="x-default" href={canonical} />
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content="en_AE" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:secure_url" content={ogImage} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogAlt} />
+
+    <link rel="preload" href="/img/logo-sm.webp" as="image" type="image/webp" fetchpriority="high" />
+    <link rel="preload" href={manropeFont} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={cormorantFont} as="font" type="font/woff2" crossorigin />
+    <style is:inline set:html={fontCss}></style>
+    <script is:inline>document.documentElement.classList.add('js');</script>
+    <noscript><style>.preloader{display:none!important}</style></noscript>
+    <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+  </head>
+  <body>
+    <slot />
+    <script>
+      import '../scripts/main.js';
+    </script>
+  </body>
+</html>
